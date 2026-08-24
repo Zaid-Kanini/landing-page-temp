@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Propel SDLC - From a product idea to governed delivery</title>
+<script>
+        try {
+            if (sessionStorage.getItem('propel-intro-seen') === 'true') {
+                document.documentElement.classList.add('intro-seen');
+            }
+        } catch {}
+    </script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f8fafb",
+                        "primary": "#00598e",
+                        "primary-fixed": "#cfe5ff",
+                        "tertiary-fixed": "#ffdcc4",
+                        "primary-container": "#0072b4",
+                        "on-tertiary-container": "#ffede3",
+                        "secondary-fixed": "#d5ed7d",
+                        "inverse-surface": "#2e3132",
+                        "on-secondary-fixed-variant": "#3e4c00",
+                        "surface-container-low": "#f2f4f5",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#404750",
+                        "text-main": "#101418",
+                        "surface-variant": "#e1e3e4",
+                        "outline": "#707881",
+                        "outline-variant": "#c0c7d2",
+                        "on-secondary-container": "#576a00",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#d2ea7b",
+                        "tertiary-container": "#a75904",
+                        "surface-panel": "#FFFFFF",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface": "#f8fafb",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191c1d",
+                        "border-quiet": "#E3E8EF",
+                        "tertiary-fixed-dim": "#ffb77f",
+                        "on-background": "#191c1d",
+                        "inverse-on-surface": "#eff1f2",
+                        "active-indicator": "#D8EAF6",
+                        "on-primary-fixed-variant": "#004a77",
+                        "on-primary-fixed": "#001d33",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#6f3800",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#b9d164",
+                        "on-secondary-fixed": "#171e00",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#536600",
+                        "surface-container-high": "#e6e8e9",
+                        "on-primary-container": "#e8f1ff",
+                        "surface-container": "#eceeef",
+                        "primary-fixed-dim": "#98cbff",
+                        "surface-dim": "#d8dadb",
+                        "tertiary": "#844400",
+                        "background": "#f8fafb",
+                        "text-muted": "#64748B",
+                        "on-tertiary-fixed": "#2f1500",
+                        "surface-tint": "#00639c",
+                        "inverse-primary": "#98cbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Poppins", "sans-serif"],
+                        "code-block": ["Poppins", "sans-serif"],
+                        "technical-label": ["Poppins", "sans-serif"],
+                        "body-md": ["Poppins", "sans-serif"],
+                        "display-lg": ["Poppins", "sans-serif"],
+                        "body-lg": ["Poppins", "sans-serif"],
+                        "body-sm": ["Poppins", "sans-serif"],
+                        "headline-lg-mobile": ["Poppins", "sans-serif"],
+                        "headline-lg": ["Poppins", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "code-block": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "technical-label": ["13px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["65px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .quiet-border {
+            border: 1px solid var(--border-quiet, #E3E8EF);
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 24px rgba(0, 89, 142, 0.15);
+        }
+        body.intro-active {
+            overflow: hidden;
+        }
+        .intro-seen body.intro-active {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .site-intro {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            background: #101418;
+            color: #ffffff;
+        }
+        .site-intro::before {
+            content: "";
+            position: absolute;
+            inset: -35%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 114, 180, 0.3), transparent 28%), radial-gradient(circle at 65% 42%, rgba(197, 221, 111, 0.16), transparent 22%);
+            animation: intro-ambient 3s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .intro-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: min(100%, 440px);
+            padding: 24px;
+            text-align: center;
+        }
+        .intro-kicker,
+        .intro-brand {
+            display: block;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        .intro-kicker {
+            width: 100%;
+            color: #c5dd6f;
+            font-family: Poppins, sans-serif;
+            font-size: clamp(20px, 2.2vw, 30px);
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            transform: translateY(14px);
+            animation: intro-kicker-in 700ms 350ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .intro-brand {
+            box-sizing: border-box;
+            width: min(340px, 78vw);
+            height: auto;
+            margin-top: 20px;
+            padding: 13px 18px 11px;
+            background: #f8fafb;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 8px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+            transform: translateY(24px) scale(0.98);
+            animation: intro-brand-in 1100ms 520ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .site-intro.is-revealing {
+            opacity: 0;
+            filter: blur(6px);
+            transform: translateY(-4%);
+            transition: opacity 1500ms ease-in-out, transform 1800ms cubic-bezier(0.16, 1, 0.3, 1), filter 1200ms ease-out;
+        }
+        .intro-active .marquee-track,
+        .intro-active .visibility-panel::after,
+        .intro-active .delivery-flow-track::before {
+            animation-play-state: paused;
+        }
+        .intro-seen .site-intro {
+            display: none;
+        }
+        @keyframes intro-kicker-in {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes intro-brand-in {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes intro-ambient {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .marquee-track {
+            width: max-content;
+            animation: marquee-left 28s linear infinite;
+        }
+        .typewriter-cursor::after {
+            content: "|";
+            color: #0072b4;
+            margin-left: 0.08em;
+            animation: cursor-blink 0.8s steps(3) infinite;
+        }
+        @keyframes marquee-left {
+            to { transform: translateX(-50%); }
+        }
+        @keyframes cursor-blink {
+            50% { opacity: 0; }
+        }
+        .hero-particle-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .hero-particle-veil {
+            background: radial-gradient(ellipse 52% 72% at 50% 48%, rgba(248, 250, 251, 0.62) 0%, rgba(248, 250, 251, 0.2) 55%, transparent 80%);
+        }
+        .agent-video-frame {
+            padding: 12px;
+            background: linear-gradient(135deg, #c5dd6f 0%, #73c7eb 48%, #0072b4 100%);
+            background-size: 220% 220%;
+            box-shadow: 0 20px 46px rgba(0, 114, 180, 0.16);
+            animation: video-frame-gradient 7s ease-in-out infinite alternate;
+        }
+        .agent-video-frame video {
+            background: #edf2f8;
+            border-radius: 18px;
+        }
+        .visibility-panel {
+            background-color: #ffffff;
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(16, 20, 24, 0.45) 1px, transparent 1.15px),
+                radial-gradient(circle at 1px 1px, rgba(0, 114, 180, 0.55) 1.25px, transparent 1.4px);
+            background-position: 0 0, 70% 32%;
+            background-size: 26px 26px, 52px 52px;
+        }
+        .visibility-panel::after {
+            content: "";
+            position: absolute;
+            right: -16%;
+            top: 8%;
+            width: 48%;
+            height: 82%;
+            background: radial-gradient(ellipse at center, rgba(115, 199, 235, 0.2), transparent 68%);
+            filter: blur(8px);
+            animation: panel-glow 10s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        .visibility-panel:nth-child(2)::after {
+            left: -16%;
+            right: auto;
+            background: radial-gradient(ellipse at center, rgba(197, 221, 111, 0.25), transparent 68%);
+        }
+        .agent-reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 700ms ease-out, transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .agent-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delivery-flow {
+            overflow: hidden;
+        }
+        .delivery-flow-timeline {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(9, minmax(0, 1fr));
+            gap: 8px;
+        }
+        .delivery-flow-track {
+            position: absolute;
+            top: 24px;
+            right: 5.55%;
+            left: 5.55%;
+            height: 3px;
+            background: #2d9ed9;
+            border-radius: 999px;
+            box-shadow: 0 0 5px rgba(45, 158, 217, 0.3);
+            opacity: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: opacity 300ms ease-out, transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .delivery-flow-track::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(115, 199, 235, 0.15) 38%, #d8f4ff 50%, rgba(115, 199, 235, 0.15) 62%, transparent 100%);
+            background-position: -180px 0;
+            background-repeat: repeat-x;
+            background-size: 180px 100%;
+            filter: drop-shadow(0 0 3px rgba(115, 199, 235, 0.5));
+            animation: delivery-flow-pulse 4s linear infinite;
+        }
+        .delivery-flow.is-visible .delivery-flow-track {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+        .delivery-flow-step {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 0;
+            opacity: 0;
+            text-align: center;
+            transform: translateY(18px);
+            transition: opacity 450ms ease-out var(--step-delay), transform 600ms cubic-bezier(0.16, 1, 0.3, 1) var(--step-delay);
+        }
+        .delivery-flow.is-visible .delivery-flow-step {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delivery-flow-dot {
+            display: grid;
+            width: 51px;
+            height: 51px;
+            place-items: center;
+            color: var(--flow-color);
+            background: #ffffff;
+            border: 2px solid color-mix(in srgb, var(--flow-color) 55%, #ffffff);
+            border-radius: 50%;
+            box-shadow: 0 8px 18px color-mix(in srgb, var(--flow-color) 18%, transparent);
+            will-change: transform;
+        }
+        .delivery-flow.is-visible .delivery-flow-dot {
+            animation: delivery-flow-dot-wave 4s ease-in-out infinite var(--wave-delay);
+        }
+        .delivery-flow:not(.has-active) .delivery-flow-dot:hover {
+            --dot-scale: 1.05;
+            cursor: pointer;
+            box-shadow: 0 0 0 5px color-mix(in srgb, var(--flow-color) 18%, transparent), 0 10px 24px color-mix(in srgb, var(--flow-color) 28%, transparent);
+        }
+        .delivery-flow.has-active .delivery-flow-step:not(.is-active) {
+            opacity: 0.38;
+            filter: saturate(0.65);
+        }
+        .delivery-flow-step.is-active .delivery-flow-dot {
+            box-shadow: 0 0 0 6px rgba(45, 158, 217, 0.16), 0 12px 28px rgba(45, 158, 217, 0.28);
+        }
+        .delivery-flow-dot.is-lifted {
+            opacity: 0;
+        }
+        .workflow-detail-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            pointer-events: none;
+            visibility: hidden;
+        }
+        .workflow-detail-layer.is-open {
+            visibility: visible;
+        }
+        .workflow-detail-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(16, 20, 24, 0.18);
+            backdrop-filter: saturate(0.86) blur(2px);
+            opacity: 0;
+            transition: opacity 350ms ease-out;
+        }
+        .workflow-detail-layer.is-open .workflow-detail-backdrop {
+            opacity: 1;
+        }
+        .workflow-detail-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: flex;
+            width: min(720px, calc(100vw - 40px));
+            max-height: min(690px, calc(100vh - 48px));
+            flex-direction: column;
+            overflow: auto;
+            padding: 40px;
+            color: #101418;
+            background: #ffffff;
+            border: 1px solid rgba(45, 158, 217, 0.22);
+            border-radius: 14px;
+            box-shadow: 0 26px 70px rgba(0, 48, 76, 0.25);
+            opacity: 0;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(0.96);
+            visibility: hidden;
+            transition: opacity 280ms ease-out, transform 400ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 400ms;
+        }
+        .workflow-detail-card.is-visible {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            visibility: visible;
+            transition-delay: 0s;
+        }
+        .workflow-detail-card.is-measuring {
+            visibility: hidden;
+            transform: translate(-50%, -50%);
+            transition: none;
+        }
+        .workflow-detail-content {
+            transition: opacity 160ms ease-out, transform 160ms ease-out;
+        }
+        .workflow-detail-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: grid;
+            width: 44px;
+            height: 44px;
+            place-items: center;
+            color: #404750;
+            background: #f2f4f5;
+            border: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 160ms ease-out, color 160ms ease-out;
+        }
+        .workflow-detail-close:hover {
+            color: #101418;
+            background: #d8eaf6;
+        }
+        .workflow-detail-stage-icon {
+            display: grid;
+            width: 72px;
+            height: 72px;
+            place-items: center;
+            color: var(--detail-color, #0072b4);
+            background: color-mix(in srgb, var(--detail-color, #0072b4) 12%, #ffffff);
+            border: 1px solid color-mix(in srgb, var(--detail-color, #0072b4) 32%, #ffffff);
+            border-radius: 50%;
+        }
+        .workflow-detail-stage-icon .material-symbols-outlined {
+            font-size: 34px;
+        }
+        .workflow-detail-eyebrow {
+            margin-top: 24px;
+            color: var(--detail-color, #0072b4);
+            font-family: Poppins, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .workflow-detail-title {
+            margin: 10px 0 0;
+            font-family: Poppins, sans-serif;
+            font-size: clamp(30px, 4vw, 42px);
+            font-weight: 700;
+            line-height: 1.12;
+        }
+        .workflow-detail-description {
+            max-width: 590px;
+            margin: 14px 0 0;
+            color: #404750;
+            font-family: Poppins, sans-serif;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        .workflow-detail-divider {
+            width: 100%;
+            height: 1px;
+            margin: 28px 0;
+            background: #e3e8ef;
+        }
+        .workflow-detail-subtitle {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .workflow-detail-activities {
+            display: grid;
+            gap: 11px;
+            margin: 16px 0 28px;
+            padding: 0;
+            list-style: none;
+        }
+        .workflow-detail-activities li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #404750;
+            font-family: Poppins, sans-serif;
+            font-size: 15px;
+        }
+        .workflow-detail-activities .material-symbols-outlined {
+            color: var(--detail-color, #0072b4);
+            font-size: 18px;
+        }
+        .workflow-detail-proxy {
+            position: fixed;
+            z-index: 100;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            color: var(--detail-color, #0072b4);
+            background: #ffffff;
+            border: 2px solid color-mix(in srgb, var(--detail-color, #0072b4) 55%, #ffffff);
+            box-shadow: 0 0 0 6px rgba(45, 158, 217, 0.16), 0 18px 40px rgba(0, 89, 142, 0.22);
+            pointer-events: none;
+        }
+        .workflow-detail-proxy .material-symbols-outlined {
+            font-size: 22px;
+        }
+        @media (max-width: 767px) {
+            .workflow-detail-card {
+                width: calc(100vw - 28px);
+                max-height: calc(100vh - 28px);
+                padding: 32px 24px 28px;
+            }
+            .workflow-detail-description {
+                font-size: 16px;
+            }
+        }
+        .delivery-flow-step .material-symbols-outlined {
+            font-size: 22px;
+        }
+        .delivery-flow-label {
+            margin-top: 14px;
+            color: #101418;
+            font-family: Poppins, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+        .visibility-reveal {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 650ms ease-out, transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .visibility-reveal--right {
+            transform: translateX(40px);
+            transition-delay: 120ms;
+        }
+        .visibility-reveal.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .cta-ribbon {
+            background-color: #73c7eb;
+            background-image:
+                linear-gradient(105deg, rgba(197, 221, 111, 0.92) 0%, rgba(115, 199, 235, 0.93) 52%, rgba(0, 114, 180, 0.82) 100%),
+                radial-gradient(circle at 1px 1px, rgba(0, 89, 142, 0.25) 1px, transparent 1.2px);
+            background-size: auto, 18px 18px;
+        }
+        .cta-ribbon::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.25;
+            background-image: linear-gradient(90deg, rgba(0, 89, 142, 0.55) 1px, transparent 1px), linear-gradient(rgba(0, 89, 142, 0.55) 1px, transparent 1px);
+            background-size: 52px 52px;
+            mask-image: linear-gradient(90deg, black, transparent 52%, black);
+            pointer-events: none;
+        }
+        @keyframes panel-glow {
+            to { transform: translateY(24px) scale(1.08); }
+        }
+        @keyframes video-frame-gradient {
+            to { background-position: 100% 100%; }
+        }
+        @keyframes delivery-flow-pulse {
+            to { background-position: 180px 0; }
+        }
+        @keyframes delivery-flow-dot-wave {
+            0%, 100% { transform: translateY(0) scale(var(--dot-scale, 1)); }
+            25% { transform: translateY(-10px) scale(var(--dot-scale, 1)); }
+            50% { transform: translateY(0) scale(var(--dot-scale, 1)); }
+            75% { transform: translateY(10px) scale(var(--dot-scale, 1)); }
+        }
+        @media (max-width: 767px) {
+            .delivery-flow-timeline {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .delivery-flow-track {
+                top: 24px;
+                bottom: 25px;
+                left: 28px;
+                right: auto;
+                width: 3px;
+                height: auto;
+                transform: scaleY(0);
+                transform-origin: top;
+            }
+            .delivery-flow-track::before {
+                background: linear-gradient(180deg, transparent 0%, rgba(115, 199, 235, 0.15) 38%, #d8f4ff 50%, rgba(115, 199, 235, 0.15) 62%, transparent 100%);
+                background-position: 0 0;
+                background-repeat: repeat-y;
+                background-size: 100% 180px;
+                animation-name: delivery-flow-pulse-mobile;
+            }
+            .delivery-flow.is-visible .delivery-flow-track {
+                transform: scaleY(1);
+            }
+            .delivery-flow.is-visible .delivery-flow-dot {
+                animation-name: delivery-flow-dot-wave-mobile;
+            }
+            .delivery-flow-step {
+                display: grid;
+                grid-template-columns: 52px minmax(0, 1fr) auto;
+                gap: 16px;
+                min-height: 78px;
+                align-items: center;
+                text-align: left;
+            }
+            .delivery-flow-label {
+                margin: 0;
+            }
+        }
+        @keyframes delivery-flow-dot-wave-mobile {
+            0%, 100% { transform: translateX(0) scale(var(--dot-scale, 1)); }
+            25% { transform: translateX(-7px) scale(var(--dot-scale, 1)); }
+            50% { transform: translateX(0) scale(var(--dot-scale, 1)); }
+            75% { transform: translateX(7px) scale(var(--dot-scale, 1)); }
+        }
+        @keyframes delivery-flow-pulse-mobile {
+            to { background-position: 0 180px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            body.intro-active { overflow-x: hidden; overflow-y: auto; }
+            .site-intro { transition: opacity 180ms ease-out; }
+            .site-intro::before,
+            .intro-kicker,
+            .intro-brand { animation: none; opacity: 1; transform: none; }
+            .marquee-track { animation: none; }
+            .typewriter-cursor::after { animation: none; }
+            .visibility-panel::after { animation: none; }
+            .agent-video-frame { animation: none; }
+            .delivery-flow-track { opacity: 1; transform: none; }
+            .delivery-flow-track::before { animation: none; }
+            .delivery-flow-dot { animation: none; }
+            .delivery-flow-step { opacity: 1; transform: none; transition: none; }
+            .agent-reveal { opacity: 1; transform: none; transition: none; }
+            .visibility-reveal { opacity: 1; transform: none; transition: none; }
+        }
+    </style>
+</head>
+<body class="intro-active bg-background text-on-surface font-body-md antialiased overflow-x-hidden scroll-smooth selection:bg-primary-container selection:text-on-primary-container">
+<div class="site-intro" id="site-intro" aria-label="Introducing Propel SDLC" role="status">
+<div class="intro-content">
+<span class="intro-kicker">Introducing</span>
+<img alt="Propel SDLC" class="intro-brand" src="propel-sdlc-logo%202.svg"/>
+</div>
+</div>
+<!-- Top Navigation Bar -->
+<nav class="bg-surface/80 docked full-width top-0 sticky z-50 border-b border-outline-variant/30 transition-all duration-300 backdrop-blur-md" id="main-nav">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<!-- Brand -->
+<a class="flex items-center cursor-pointer opacity-80 hover:opacity-100 transition-opacity" href="#" aria-label="Propel SDLC home">
+<img class="h-8 w-auto" src="propel-sdlc-logo%202.svg" alt="Propel SDLC"/>
+</a>
+<!-- Desktop Links -->
+<div class="hidden md:flex items-center gap-8">
+<div class="static" id="products-dropdown">
+<button class="inline-flex items-center gap-1 text-on-surface-variant font-body-sm hover:text-on-surface transition-colors hover:bg-surface-container px-3 py-1.5 rounded-DEFAULT" id="products-trigger" type="button" aria-expanded="false" aria-controls="products-menu">
+                    Products
+<span class="material-symbols-outlined text-base transition-transform duration-200" id="products-trigger-icon">expand_more</span>
+</button>
+<div class="invisible pointer-events-none absolute left-0 top-full w-full border-b border-outline-variant/40 bg-surface-panel opacity-0 translate-y-2 transition-all duration-200" id="products-menu">
+<div class="grid max-w-container-max mx-auto grid-cols-[0.8fr_1.2fr] gap-12 px-margin-desktop py-10">
+<div class="border-r border-border-quiet pr-12">
+<p class="text-headline-lg font-headline-lg font-semibold text-on-surface">Explore specialized agents</p>
+<p class="mt-3 max-w-sm text-body-md font-body-md text-on-surface-variant">Move from discovery to governed delivery with specialist agents that share the context of every decision.</p>
+<a class="inline-flex items-center gap-2 mt-6 text-primary font-body-md font-medium hover:underline" href="#agent-workflows">View all workflows <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+<div>
+<p class="text-technical-label font-technical-label uppercase tracking-widest text-on-surface-variant mb-4">Agent Workflows</p>
+<div class="grid grid-cols-2 gap-x-8 gap-y-2">
+<a class="flex items-center gap-3 rounded-lg px-3 py-3 text-body-md font-body-md text-on-surface hover:bg-active-indicator transition-colors" href="#discovery-agent"><span class="material-symbols-outlined text-primary">explore</span>Discovery Agent</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-3 text-body-md font-body-md text-on-surface hover:bg-active-indicator transition-colors" href="#specification-agent"><span class="material-symbols-outlined text-primary">edit_document</span>Specification Agent</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-3 text-body-md font-body-md text-on-surface hover:bg-active-indicator transition-colors" href="#design-agent"><span class="material-symbols-outlined text-primary">architecture</span>Design Agent</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-3 text-body-md font-body-md text-on-surface hover:bg-active-indicator transition-colors" href="#implementation-agent"><span class="material-symbols-outlined text-primary">terminal</span>Implementation Agent</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a class="text-on-surface-variant font-body-sm hover:text-on-surface transition-colors hover:bg-surface-container px-3 py-1.5 rounded-DEFAULT" href="#">Use Cases</a>
+<a class="text-on-surface-variant font-body-sm hover:text-on-surface transition-colors hover:bg-surface-container px-3 py-1.5 rounded-DEFAULT" href="#">Pricing</a>
+</div>
+<!-- Actions -->
+<div class="hidden md:flex items-center gap-4">
+<button class="bg-primary text-on-primary font-body-sm font-medium px-5 py-2 rounded-lg hover:bg-primary-container transition-colors flex items-center gap-2">
+                    Get Started
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative w-full min-h-[700px] flex flex-col items-center justify-center pt-16 pb-24 overflow-hidden bg-background">
+<!-- Animated Background -->
+<canvas class="hero-particle-canvas z-0" id="hero-particles" aria-hidden="true"></canvas>
+<div class="hero-particle-veil absolute inset-0 z-0 pointer-events-none" aria-hidden="true"></div>
+<div class="relative z-10 w-full max-w-4xl mx-auto px-margin-desktop text-center flex flex-col items-center space-y-8 -translate-y-8">
+<!-- Copy -->
+<img class="h-12 w-auto opacity-0 translate-y-2 transition-all duration-700 ease-out" id="hero-logo" src="propel-sdlc-logo%202.svg" alt="Propel SDLC"/>
+<h1 class="text-display-lg font-display-lg font-bold text-on-surface leading-tight tracking-tight min-h-[112px] flex items-center justify-center" aria-label="From a product idea to governed delivery.">
+<span id="typewriter-text" class="typewriter-cursor"></span>
+</h1>
+<!-- <p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    Propel coordinates specialized AI workflows, bridging the gap between product vision and engineering execution with enterprise-grade governance and full traceability.
+                </p> -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full sm:w-auto opacity-0 translate-y-4 pointer-events-none transition-all duration-700 ease-out" id="hero-actions">
+<button class="w-full sm:w-auto bg-primary text-on-primary font-body-md font-medium px-8 py-3.5 rounded-lg hover:bg-primary-container transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                        See Propel in action
+                        <span class="material-symbols-outlined">play_circle</span>
+</button>
+<a class="w-full sm:w-auto bg-surface-container-lowest text-on-surface border border-outline-variant font-body-md font-medium px-8 py-3.5 rounded-lg hover:bg-surface-container transition-colors flex items-center justify-center gap-2" href="#agent-workflows">
+                        Explore workflows
+                        <span class="material-symbols-outlined text-on-surface-variant">account_tree</span>
+</a>
+</div>
+<div class="flex items-center justify-center gap-12 pt-10 w-full mt-2">
+<!-- <div class="flex flex-col items-center"> -->
+<!-- <span class="text-headline-md font-headline-md font-bold text-on-surface">10x</span>
+<span class="text-technical-label font-technical-label text-on-surface-variant uppercase tracking-wider">Faster Delivery</span>
+</div>
+<div class="h-10 w-px bg-outline-variant/50"></div>
+<div class="flex flex-col items-center">
+<span class="text-headline-md font-headline-md font-bold text-on-surface">SOC2</span>
+<span class="text-technical-label font-technical-label text-on-surface-variant uppercase tracking-wider">Compliant</span> -->
+</div>
+</div>
+</div>
+</header>
+<!-- Proof Strip -->
+<section class="w-full bg-surface-container-lowest border-y border-outline-variant/30 py-6 overflow-hidden">
+<div class="marquee-track flex items-center gap-16 opacity-80 whitespace-nowrap hover:[animation-play-state:paused]">
+<div class="flex items-center gap-16">
+<div class="flex items-center gap-2 text-on-surface-variant font-technical-label text-technical-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+                Specialized AI Workflows
+            </div>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant/50"></div>
+<div class="flex items-center gap-2 text-on-surface-variant font-technical-label text-technical-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                Human Approval Gates
+            </div>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant/50"></div>
+<div class="flex items-center gap-2 text-on-surface-variant font-technical-label text-technical-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                End-to-End Traceability
+            </div>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant/50"></div>
+<div class="flex items-center gap-2 text-on-surface-variant font-technical-label text-technical-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">security</span>
+                Enterprise Governance
+            </div>
+</div>
+<div class="flex items-center gap-16" aria-hidden="true">
+<div class="flex items-center gap-2 text-on-surface-variant font-technical-label text-technical-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+                Specialized AI Workflows
+            </div>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant/50"></div>
+<div class="flex items-center gap-2 text-on-surface-variant font-technical-label text-technical-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                Human Approval Gates
+            </div>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant/50"></div>
+<div class="flex items-center gap-2 text-on-surface-variant font-technical-label text-technical-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                End-to-End Traceability
+            </div>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant/50"></div>
+<div class="flex items-center gap-2 text-on-surface-variant font-technical-label text-technical-label uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">security</span>
+                Enterprise Governance
+            </div>
+</div>
+</div>
+</section>
+<!-- Agent Collaboration Topology -->
+<section class="w-full py-24 bg-surface relative border-b border-outline-variant/20 scroll-mt-24" id="agent-workflows">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="max-w-4xl mb-20">
+<span class="text-[15px] font-technical-label font-semibold uppercase tracking-widest text-primary">Agent Network</span>
+<h2 class="text-[40px] leading-[1.15] sm:text-[46px] font-headline-lg font-bold text-on-surface mt-4 mb-5 min-h-[106px]" aria-label="A Topology of Specialized Agents">
+<span class="typewriter-cursor" id="topology-title"></span>
+</h2>
+<p class="text-[18px] leading-8 font-body-lg text-on-surface-variant min-h-[128px]" aria-label="Propel doesn't rely on a single generic AI. It orchestrates a network of specialized agents, each fine-tuned for a specific phase of the software development lifecycle.">
+<span id="topology-description"></span>
+</p>
+</div>
+<div class="space-y-20">
+<article class="agent-reveal grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] items-center gap-12 lg:gap-20 scroll-mt-24" id="discovery-agent">
+<div class="max-w-md">
+<span class="text-technical-label font-technical-label text-primary">01 / DISCOVERY</span>
+<h3 class="text-headline-lg font-headline-lg font-semibold text-on-surface mt-4 mb-5">Discovery Agent</h3>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Analyzes market signals, user feedback, and business goals to identify valuable product opportunities before work begins.</p>
+</div>
+<div class="agent-video-frame overflow-hidden rounded-[28px]">
+<video class="block w-full aspect-[4/3] bg-surface-panel object-cover" autoplay muted loop playsinline poster="screen.png" aria-label="Discovery Agent workflow demonstration">
+<source src="Screen%20Recording%202026-08-24%20154047.mp4" type="video/mp4"/>
+                    Your browser does not support video playback.
+</video>
+</div>
+</article>
+<article class="agent-reveal grid grid-cols-1 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] items-center gap-12 lg:gap-20 scroll-mt-24" id="specification-agent">
+<div class="max-w-md lg:order-2">
+<span class="text-technical-label font-technical-label text-primary">02 / SPECIFICATION</span>
+<h3 class="text-headline-lg font-headline-lg font-semibold text-on-surface mt-4 mb-5">Specification Agent</h3>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Turns approved discovery into structured product requirements, clarifying scope, acceptance criteria, and delivery constraints.</p>
+</div>
+<div class="agent-video-frame overflow-hidden rounded-[28px] lg:order-1">
+<video class="block w-full aspect-[4/3] bg-surface-panel object-cover" autoplay muted loop playsinline poster="screen.png" aria-label="Specification Agent workflow demonstration">
+<source src="Screen%20Recording%202026-08-24%20154047.mp4" type="video/mp4"/>
+                    Your browser does not support video playback.
+</video>
+</div>
+</article>
+<article class="agent-reveal grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] items-center gap-12 lg:gap-20 scroll-mt-24" id="design-agent">
+<div class="max-w-md">
+<span class="text-technical-label font-technical-label text-primary">03 / DESIGN</span>
+<h3 class="text-headline-lg font-headline-lg font-semibold text-on-surface mt-4 mb-5">Design Agent</h3>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Converts requirements into implementation-ready system designs, API contracts, and data models with traceable decisions.</p>
+</div>
+<div class="agent-video-frame overflow-hidden rounded-[28px]">
+<video class="block w-full aspect-[4/3] bg-surface-panel object-cover" autoplay muted loop playsinline poster="screen.png" aria-label="Design Agent workflow demonstration">
+<source src="Screen%20Recording%202026-08-24%20154047.mp4" type="video/mp4"/>
+                    Your browser does not support video playback.
+</video>
+</div>
+</article>
+<article class="agent-reveal grid grid-cols-1 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] items-center gap-12 lg:gap-20 scroll-mt-24" id="implementation-agent">
+<div class="max-w-md lg:order-2">
+<span class="text-technical-label font-technical-label text-primary">04 / IMPLEMENTATION</span>
+<h3 class="text-headline-lg font-headline-lg font-semibold text-on-surface mt-4 mb-5">Implementation Agent</h3>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Builds governed foundations from approved designs, generating secure code patterns and maintaining complete delivery context.</p>
+</div>
+<div class="agent-video-frame overflow-hidden rounded-[28px] lg:order-1">
+<video class="block w-full aspect-[4/3] bg-surface-panel object-cover" autoplay muted loop playsinline poster="screen.png" aria-label="Implementation Agent workflow demonstration">
+<source src="Screen%20Recording%202026-08-24%20154047.mp4" type="video/mp4"/>
+                    Your browser does not support video playback.
+</video>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- End-to-End Delivery Flow -->
+<section class="delivery-flow w-full border-b border-outline-variant/20 bg-surface-container-low py-24" id="delivery-flow">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="max-w-3xl mb-16">
+<span class="text-[15px] font-technical-label font-semibold uppercase tracking-widest text-primary">Delivery Workflow</span>
+<h2 class="mt-4 text-[40px] leading-[1.15] sm:text-[46px] font-headline-lg font-bold text-on-surface">From idea to security review.</h2>
+<p class="mt-5 max-w-2xl text-[18px] leading-8 font-body-lg text-on-surface-variant">Every phase stays connected, traceable, and ready for the next decision.</p>
+</div>
+<div class="delivery-flow-timeline" aria-label="Delivery workflow from ideation to security review">
+<div class="delivery-flow-track" aria-hidden="true"></div>
+<div class="delivery-flow-step" style="--flow-color: #0072b4; --step-delay: 80ms; --wave-delay: 0ms;"><span class="delivery-flow-dot"><span class="material-symbols-outlined">lightbulb</span></span><span class="delivery-flow-label">Ideation</span></div>
+<div class="delivery-flow-step" style="--flow-color: #34c991; --step-delay: 180ms; --wave-delay: 444ms;"><span class="delivery-flow-dot"><span class="material-symbols-outlined">description</span></span><span class="delivery-flow-label">Spec Authoring</span></div>
+<div class="delivery-flow-step" style="--flow-color: #2d9ed9; --step-delay: 280ms; --wave-delay: 888ms;"><span class="delivery-flow-dot"><span class="material-symbols-outlined">draw</span></span><span class="delivery-flow-label">Design &amp; UX</span></div>
+<div class="delivery-flow-step" style="--flow-color: #a6c82c; --step-delay: 380ms; --wave-delay: 1332ms;"><span class="delivery-flow-dot"><span class="material-symbols-outlined">checklist</span></span><span class="delivery-flow-label">Backlog Planning</span></div>
+<div class="delivery-flow-step" style="--flow-color: #168fcf; --step-delay: 480ms; --wave-delay: 1776ms;"><span class="delivery-flow-dot"><span class="material-symbols-outlined">account_tree</span></span><span class="delivery-flow-label">Architecture Design</span></div>
+<div class="delivery-flow-step" style="--flow-color: #168fcf; --step-delay: 580ms; --wave-delay: 2220ms;"><span class="delivery-flow-dot"><span class="material-symbols-outlined">terminal</span></span><span class="delivery-flow-label">Dev Execution</span></div>
+<div class="delivery-flow-step" style="--flow-color: #168fcf; --step-delay: 680ms; --wave-delay: 2664ms;"><span class="delivery-flow-dot"><span class="material-symbols-outlined">fact_check</span></span><span class="delivery-flow-label">Quality &amp; Testing</span></div>
+<div class="delivery-flow-step" style="--flow-color: #168fcf; --step-delay: 780ms; --wave-delay: 3108ms;"><span class="delivery-flow-dot"><span class="material-symbols-outlined">rocket_launch</span></span><span class="delivery-flow-label">DevOps &amp; Release</span></div>
+<div class="delivery-flow-step" style="--flow-color: #168fcf; --step-delay: 880ms; --wave-delay: 3552ms;"><span class="delivery-flow-dot"><span class="material-symbols-outlined">shield</span></span><span class="delivery-flow-label">Security Review</span></div>
+</div>
+</div>
+</section>
+<div class="workflow-detail-layer" id="workflow-detail-layer" aria-hidden="true">
+<div class="workflow-detail-backdrop"></div>
+<article class="workflow-detail-card" id="workflow-detail-card" aria-labelledby="workflow-detail-title" aria-modal="true" role="dialog" tabindex="-1">
+<button class="workflow-detail-close" id="workflow-detail-close" type="button" aria-label="Close workflow details"><span class="material-symbols-outlined">close</span></button>
+<div class="workflow-detail-content" id="workflow-detail-content"></div>
+</article>
+</div>
+<!-- Product Gallery / UI Modules -->
+<section class="w-full py-24 bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="mb-14 max-w-2xl">
+<h2 class="text-[40px] leading-[1.15] sm:text-[46px] font-headline-lg font-bold text-on-surface mb-4 min-h-[92px] sm:min-h-[53px]" aria-label="Clarity for Every Stakeholder"><span class="typewriter-cursor" id="clarity-title"></span></h2>
+<p class="text-[18px] leading-8 font-body-lg text-on-surface-variant min-h-[96px]" aria-label="Give delivery teams a clear view of every handoff while giving engineering leaders the control to govern work with confidence."><span id="clarity-description"></span></p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 overflow-hidden border border-border-quiet">
+<article class="visibility-panel visibility-reveal relative min-h-[520px] overflow-hidden px-8 py-12 sm:px-14 sm:py-16 lg:border-r lg:border-border-quiet flex flex-col justify-center">
+<div class="relative z-10 max-w-md">
+<span class="inline-flex rounded-full border border-border-quiet bg-surface-panel/80 px-4 py-2 text-technical-label font-technical-label text-on-surface">For delivery teams</span>
+<h3 class="mt-7 text-[44px] leading-[1.05] font-headline-lg font-semibold text-on-surface">Know what happens next.</h3>
+<p class="mt-5 max-w-sm text-body-lg font-body-lg text-on-surface-variant">See each decision, handoff, and approval as work moves through the agent network.</p>
+<a class="inline-flex w-fit items-center gap-2 mt-8 rounded-full bg-on-surface px-6 py-3 font-body-md font-medium text-on-primary transition-transform hover:-translate-y-0.5" href="#agent-workflows">Inspect workflows <span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+</div>
+</article>
+<article class="visibility-panel visibility-reveal visibility-reveal--right relative min-h-[520px] overflow-hidden px-8 py-12 sm:px-14 sm:py-16 flex flex-col justify-center">
+<div class="relative z-10 max-w-md">
+<span class="inline-flex rounded-full border border-border-quiet bg-surface-panel/80 px-4 py-2 text-technical-label font-technical-label text-on-surface">For engineering leaders</span>
+<h3 class="mt-7 text-[44px] leading-[1.05] font-headline-lg font-semibold text-on-surface">Govern with confidence.</h3>
+<p class="mt-5 max-w-sm text-body-lg font-body-lg text-on-surface-variant">Set approval gates and trace every workflow outcome without trading away delivery speed.</p>
+<a class="inline-flex w-fit items-center gap-2 mt-8 rounded-full border border-border-quiet bg-surface-panel/80 px-6 py-3 font-body-md font-medium text-on-surface transition-colors hover:bg-active-indicator" href="#agent-workflows">Explore governance <span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="w-full bg-surface-container-lowest border-t border-outline-variant/30">
+<div class="cta-ribbon relative flex min-h-[340px] w-full items-center overflow-hidden px-margin-desktop py-14 sm:py-16">
+<div class="relative z-10 flex w-full flex-col gap-8 md:flex-row md:items-center md:justify-between">
+<h2 class="text-headline-lg font-headline-lg font-bold text-on-surface leading-tight">Discuss first.<br/>Governed delivery next.</h2>
+<a class="inline-flex w-fit items-center justify-center gap-2 rounded-lg bg-[#001d33] px-8 py-4 font-body-md font-semibold text-on-primary transition-transform hover:-translate-y-0.5" href="#agent-workflows">Talk to us <span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-low full-width bottom-0 border-t border-outline-variant/50">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<!-- Brand Column -->
+<div class="col-span-2 md:col-span-4 lg:col-span-1 mb-8 lg:mb-0">
+<img class="h-10 w-auto mb-4" src="propel-sdlc-logo%202.svg" alt="Propel SDLC"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+                    The agentic development platform for governed, high-velocity engineering teams.
+                </p>
+<p class="font-technical-label text-technical-label text-on-surface-variant/70">
+                    © 2026 Propel SDLC by Kanini. All rights reserved.
+                </p>
+</div>
+<!-- Links 1 -->
+<div class="flex flex-col gap-3">
+<span class="font-technical-label text-technical-label text-on-surface mb-2">Platform</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Product</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Pricing</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Use Cases</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Enterprise</a>
+</div>
+<!-- Links 2 -->
+<div class="flex flex-col gap-3">
+<span class="font-technical-label text-technical-label text-on-surface mb-2">Resources</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Docs</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Changelog</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Blog</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Releases</a>
+</div>
+<!-- Links 3 -->
+<div class="flex flex-col gap-3">
+<span class="font-technical-label text-technical-label text-on-surface mb-2">Company</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Press</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Terms</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Privacy</a>
+</div>
+</div>
+</footer>
+<script>
+        const siteIntro = document.getElementById('site-intro');
+        const hasSeenIntro = document.documentElement.classList.contains('intro-seen');
+        let introIsComplete = hasSeenIntro;
+        let startHeroExperience = () => {};
+
+        const finishIntro = () => {
+            document.body.classList.remove('intro-active');
+            siteIntro.remove();
+            introIsComplete = true;
+            startHeroExperience();
+        };
+
+        if (hasSeenIntro) {
+            finishIntro();
+        } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            window.setTimeout(finishIntro, 180);
+        } else {
+            try {
+                sessionStorage.setItem('propel-intro-seen', 'true');
+            } catch {}
+
+            window.setTimeout(() => {
+                siteIntro.classList.add('is-revealing');
+                window.setTimeout(finishIntro, 1850);
+            }, 5000);
+        }
+
+        // Simple sticky nav script
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-sm');
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                nav.classList.remove('shadow-sm');
+                nav.style.backgroundColor = 'rgba(248, 250, 251, 0.8)';
+            }
+        });
+
+        const typewriterText = document.getElementById('typewriter-text');
+        const heroActions = document.getElementById('hero-actions');
+        const heroLogo = document.getElementById('hero-logo');
+        const topologyTitle = document.getElementById('topology-title');
+        const topologyDescription = document.getElementById('topology-description');
+        const clarityTitle = document.getElementById('clarity-title');
+        const clarityDescription = document.getElementById('clarity-description');
+        const heroHeadline = 'From a product idea to governed delivery.';
+        const topologyTitleText = 'A Topology of Specialized Agents';
+        const topologyDescriptionText = "Propel doesn't rely on a single generic AI. It orchestrates a network of specialized agents, each fine-tuned for a specific phase of the software development lifecycle.";
+        const clarityTitleText = 'Clarity for Every Stakeholder';
+        const clarityDescriptionText = 'Give delivery teams a clear view of every handoff while giving engineering leaders the control to govern work with confidence.';
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const heroCanvas = document.getElementById('hero-particles');
+        const heroSection = heroCanvas.closest('header');
+
+        const beginHeroExperience = () => {
+            if (beginHeroExperience.hasStarted) {
+                return;
+            }
+
+            beginHeroExperience.hasStarted = true;
+
+            if (!prefersReducedMotion && heroCanvas) {
+            const context = heroCanvas.getContext('2d');
+            const particleColors = [[0, 114, 180], [115, 199, 235], [197, 221, 111], [0, 89, 142]];
+            const mouse = { x: -1000, y: -1000, smoothX: -1000, smoothY: -1000, active: false };
+            let particles = [];
+            let canvasWidth = 0;
+            let canvasHeight = 0;
+            let animationFrame;
+
+            const createParticles = () => {
+                const centerX = canvasWidth / 2;
+                const centerY = canvasHeight / 2;
+                const maxRadius = Math.min(canvasWidth, canvasHeight) * 0.62;
+                const particleCount = Math.min(1200, Math.max(1600, Math.round((canvasWidth * canvasHeight) / 420)));
+
+                particles = Array.from({ length: particleCount }, () => {
+                    const angle = Math.random() * Math.PI * 2;
+                    const radius = Math.sqrt(Math.random()) * maxRadius;
+                    const depth = 0.35 + Math.random() * 0.65;
+                    const color = particleColors[Math.floor(Math.random() * particleColors.length)];
+                    const originX = centerX + Math.cos(angle) * radius;
+                    const originY = centerY + Math.sin(angle) * radius;
+
+                    return {
+                        originX,
+                        originY,
+                        x: originX,
+                        y: originY,
+                        velocityX: 0,
+                        velocityY: 0,
+                        size: 0.6 + Math.random() * 1.8 * depth,
+                        length: 1 + Math.random() * 2,
+                        angle: Math.random() * Math.PI,
+                        alpha: 0.14 + Math.random() * 0.38 * depth,
+                        depth,
+                        phase: Math.random() * Math.PI * 2,
+                        color
+                    };
+                });
+            };
+
+            const resizeHeroCanvas = () => {
+                const bounds = heroCanvas.getBoundingClientRect();
+                const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+                canvasWidth = bounds.width;
+                canvasHeight = bounds.height;
+                heroCanvas.width = Math.round(canvasWidth * pixelRatio);
+                heroCanvas.height = Math.round(canvasHeight * pixelRatio);
+                context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+                createParticles();
+            };
+
+            const updateMouse = (event) => {
+                const bounds = heroCanvas.getBoundingClientRect();
+                mouse.x = event.clientX - bounds.left;
+                mouse.y = event.clientY - bounds.top;
+                mouse.active = true;
+            };
+
+            const drawParticles = (timestamp) => {
+                mouse.smoothX += (mouse.x - mouse.smoothX) * (mouse.active ? 0.14 : 0.025);
+                mouse.smoothY += (mouse.y - mouse.smoothY) * (mouse.active ? 0.14 : 0.025);
+                context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+                particles.forEach((particle) => {
+                    const returnX = (particle.originX - particle.x) * 0.012;
+                    const returnY = (particle.originY - particle.y) * 0.012;
+                    const driftX = Math.sin(timestamp * 0.0004 + particle.phase + particle.y * 0.003) * 0.14;
+                    const driftY = Math.cos(timestamp * 0.00035 + particle.phase + particle.x * 0.003) * 0.14;
+                    const deltaX = particle.x - mouse.smoothX;
+                    const deltaY = particle.y - mouse.smoothY;
+                    const distance = Math.hypot(deltaX, deltaY);
+                    let repelX = 0;
+                    let repelY = 0;
+
+                    if (distance > 34 && distance < 280) {
+                        const falloff = 1 - (distance - 34) / 246;
+                        const strength = 7 * falloff * falloff * particle.depth;
+                        repelX = (deltaX / distance) * strength;
+                        repelY = (deltaY / distance) * strength;
+                    }
+
+                    particle.velocityX = (particle.velocityX + returnX + driftX + repelX) * 0.92;
+                    particle.velocityY = (particle.velocityY + returnY + driftY + repelY) * 0.92;
+                    particle.x += particle.velocityX;
+                    particle.y += particle.velocityY;
+
+                    const speed = Math.hypot(particle.velocityX, particle.velocityY);
+                    if (speed > 0.08) {
+                        particle.angle = Math.atan2(particle.velocityY, particle.velocityX);
+                    }
+
+                    const lineLength = Math.min(particle.length + speed, particle.length * 2.4);
+                    const offsetX = Math.cos(particle.angle) * lineLength * 0.5;
+                    const offsetY = Math.sin(particle.angle) * lineLength * 0.5;
+                    context.beginPath();
+                    context.moveTo(particle.x - offsetX, particle.y - offsetY);
+                    context.lineTo(particle.x + offsetX, particle.y + offsetY);
+                    context.strokeStyle = `rgba(${particle.color[0]}, ${particle.color[1]}, ${particle.color[2]}, ${particle.alpha})`;
+                    context.lineWidth = particle.size;
+                    context.lineCap = 'round';
+                    context.stroke();
+                });
+
+                animationFrame = window.requestAnimationFrame(drawParticles);
+            };
+
+            resizeHeroCanvas();
+            heroSection.addEventListener('pointermove', updateMouse);
+            heroSection.addEventListener('pointerleave', () => { mouse.active = false; });
+            window.addEventListener('resize', resizeHeroCanvas);
+            animationFrame = window.requestAnimationFrame(drawParticles);
+
+            window.addEventListener('beforeunload', () => {
+                window.cancelAnimationFrame(animationFrame);
+                window.removeEventListener('resize', resizeHeroCanvas);
+            }, { once: true });
+            }
+
+            const revealHeroActions = () => {
+                heroLogo.classList.remove('opacity-0', 'translate-y-2');
+                heroActions.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            };
+
+            const completeHeadline = () => {
+                typewriterText.classList.remove('typewriter-cursor');
+                typewriterText.innerHTML = 'From a product idea to <span class="text-[#c5dd6f]">governed delivery.</span>';
+                revealHeroActions();
+            };
+
+            if (prefersReducedMotion) {
+                completeHeadline();
+            } else {
+                let characterIndex = 0;
+                const typeNextCharacter = () => {
+                    typewriterText.textContent = heroHeadline.slice(0, characterIndex + 1);
+                    characterIndex += 1;
+
+                    if (characterIndex < heroHeadline.length) {
+                        window.setTimeout(typeNextCharacter, 60);
+                    } else {
+                        window.setTimeout(completeHeadline, 250);
+                    }
+                };
+
+                window.setTimeout(typeNextCharacter, 300);
+            }
+        };
+
+        startHeroExperience = beginHeroExperience;
+        if (introIsComplete) {
+            startHeroExperience();
+        }
+
+        const typeText = (element, text, delay, onComplete) => {
+            let characterIndex = 0;
+            const typeNextCharacter = () => {
+                element.textContent = text.slice(0, characterIndex + 1);
+                characterIndex += 1;
+
+                if (characterIndex < text.length) {
+                    window.setTimeout(typeNextCharacter, delay);
+                } else {
+                    onComplete();
+                }
+            };
+
+            typeNextCharacter();
+        };
+
+        const completeTopology = () => {
+            topologyTitle.classList.remove('typewriter-cursor');
+            topologyTitle.textContent = topologyTitleText;
+            topologyDescription.classList.remove('typewriter-cursor');
+            topologyDescription.textContent = topologyDescriptionText;
+        };
+
+        const startTopologyTypewriter = () => {
+            if (prefersReducedMotion) {
+                completeTopology();
+                return;
+            }
+
+            typeText(topologyTitle, topologyTitleText, 45, () => {
+                topologyTitle.classList.remove('typewriter-cursor');
+                topologyDescription.classList.add('typewriter-cursor');
+                typeText(topologyDescription, topologyDescriptionText, 18, () => {
+                    topologyDescription.classList.remove('typewriter-cursor');
+                });
+            });
+        };
+
+        if (prefersReducedMotion) {
+            completeTopology();
+        } else {
+            const topologyObserver = new IntersectionObserver((entries, observer) => {
+                if (entries[0].isIntersecting) {
+                    startTopologyTypewriter();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.35 });
+
+            topologyObserver.observe(topologyTitle);
+        }
+
+        const completeClarity = () => {
+            clarityTitle.classList.remove('typewriter-cursor');
+            clarityTitle.textContent = clarityTitleText;
+            clarityDescription.textContent = clarityDescriptionText;
+        };
+
+        const startClarityTypewriter = () => {
+            if (prefersReducedMotion) {
+                completeClarity();
+                return;
+            }
+
+            typeText(clarityTitle, clarityTitleText, 45, () => {
+                clarityTitle.classList.remove('typewriter-cursor');
+                clarityDescription.classList.add('typewriter-cursor');
+                typeText(clarityDescription, clarityDescriptionText, 16, () => {
+                    clarityDescription.classList.remove('typewriter-cursor');
+                });
+            });
+        };
+
+        if (prefersReducedMotion) {
+            completeClarity();
+        } else {
+            const clarityObserver = new IntersectionObserver((entries, observer) => {
+                if (entries[0].isIntersecting) {
+                    startClarityTypewriter();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.35 });
+
+            clarityObserver.observe(clarityTitle);
+        }
+
+        const agentRows = document.querySelectorAll('.agent-reveal');
+
+        if (prefersReducedMotion) {
+            agentRows.forEach((agentRow) => agentRow.classList.add('is-visible'));
+        } else {
+            const agentRevealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+
+            agentRows.forEach((agentRow) => agentRevealObserver.observe(agentRow));
+
+            const revealVisibleAgentRows = () => {
+                agentRows.forEach((agentRow) => {
+                    const rowBounds = agentRow.getBoundingClientRect();
+                    const rowIsInView = rowBounds.top < window.innerHeight * 0.82 && rowBounds.bottom > window.innerHeight * 0.1;
+
+                    if (rowIsInView) {
+                        agentRow.classList.add('is-visible');
+                    }
+                });
+            };
+
+            revealVisibleAgentRows();
+            window.addEventListener('scroll', revealVisibleAgentRows, { passive: true });
+            window.addEventListener('resize', revealVisibleAgentRows);
+        }
+
+        const visibilityPanels = document.querySelectorAll('.visibility-reveal');
+
+        if (prefersReducedMotion) {
+            visibilityPanels.forEach((visibilityPanel) => visibilityPanel.classList.add('is-visible'));
+        } else {
+            const revealVisiblePanels = () => {
+                visibilityPanels.forEach((visibilityPanel) => {
+                    const panelBounds = visibilityPanel.getBoundingClientRect();
+                    const panelIsInView = panelBounds.top < window.innerHeight * 0.84 && panelBounds.bottom > window.innerHeight * 0.12;
+
+                    if (panelIsInView) {
+                        visibilityPanel.classList.add('is-visible');
+                    }
+                });
+            };
+
+            revealVisiblePanels();
+            window.addEventListener('scroll', revealVisiblePanels, { passive: true });
+            window.addEventListener('resize', revealVisiblePanels);
+        }
+
+        const deliveryFlow = document.getElementById('delivery-flow');
+
+        if (!prefersReducedMotion) {
+            const deliveryFlowObserver = new IntersectionObserver((entries, observer) => {
+                if (entries[0].isIntersecting) {
+                    deliveryFlow.classList.add('is-visible');
+                    observer.disconnect();
+                }
+            }, { threshold: 0.28 });
+
+            deliveryFlowObserver.observe(deliveryFlow);
+
+            const revealDeliveryFlow = () => {
+                const flowBounds = deliveryFlow.getBoundingClientRect();
+                const flowIsInView = flowBounds.top < window.innerHeight * 0.82 && flowBounds.bottom > window.innerHeight * 0.18;
+
+                if (flowIsInView) {
+                    deliveryFlow.classList.add('is-visible');
+                }
+            };
+
+            revealDeliveryFlow();
+            window.addEventListener('scroll', revealDeliveryFlow, { passive: true });
+            window.addEventListener('resize', revealDeliveryFlow);
+        }
+
+        const workflowDetailLayer = document.getElementById('workflow-detail-layer');
+        const workflowDetailCard = document.getElementById('workflow-detail-card');
+        const workflowDetailContent = document.getElementById('workflow-detail-content');
+        const workflowDetailClose = document.getElementById('workflow-detail-close');
+        const workflowDots = deliveryFlow ? Array.from(deliveryFlow.querySelectorAll('.delivery-flow-dot')) : [];
+        const workflowStages = [
+            { title: 'Ideation', icon: 'lightbulb', color: '#0072b4', description: 'Capture, explore, and refine the product idea and its problem statement.', activities: ['Problem statement', 'Opportunity mapping', 'Idea refinement'] },
+            { title: 'Spec Authoring', icon: 'description', color: '#34c991', description: 'Turn the idea into clear functional requirements and a formal specification.', activities: ['Functional requirements', 'Acceptance criteria', 'Formal specification'] },
+            { title: 'Design & UX', icon: 'draw', color: '#2d9ed9', description: 'Define screens, navigation, user flows, and design-system direction.', activities: ['Screen designs', 'Navigation flows', 'Design-system direction'] },
+            { title: 'Backlog Planning', icon: 'checklist', color: '#a6c82c', description: 'Break requirements into epics, user stories, tasks, and sprint-ready work.', activities: ['Epics and user stories', 'Task breakdown', 'Sprint-ready planning'] },
+            { title: 'Architecture Design', icon: 'account_tree', color: '#168fcf', description: 'Decide the technical architecture, integrations, non-functional requirements, and key technology choices.', activities: ['System architecture', 'API contracts', 'Data modeling'] },
+            { title: 'Dev Execution', icon: 'terminal', color: '#168fcf', description: 'Implement the solution, analyze code, resolve bugs, and prepare pull requests.', activities: ['Implementation', 'Code analysis and fixes', 'Pull request readiness'] },
+            { title: 'Quality & Testing', icon: 'fact_check', color: '#168fcf', description: 'Create and run unit, automation, edge-case, and code-quality checks.', activities: ['Unit and automation tests', 'Edge-case coverage', 'Code-quality checks'] },
+            { title: 'DevOps & Release', icon: 'rocket_launch', color: '#168fcf', description: 'Set up CI/CD, infrastructure-as-code, cloud configuration, and deployment readiness.', activities: ['CI/CD configuration', 'Infrastructure as code', 'Deployment readiness'] },
+            { title: 'Security Review', icon: 'shield', color: '#168fcf', description: 'Validate application, infrastructure, and configuration security before release.', activities: ['Application security', 'Infrastructure review', 'Configuration validation'] }
+        ];
+        let activeWorkflowIndex = null;
+        let activeWorkflowDot = null;
+        let workflowTransition = false;
+
+        const renderWorkflowDetail = (stage) => {
+            workflowDetailCard.style.setProperty('--detail-color', stage.color);
+            workflowDetailContent.innerHTML = `
+                <div class="workflow-detail-stage-icon"><span class="material-symbols-outlined">${stage.icon}</span></div>
+                <p class="workflow-detail-eyebrow">Workflow stage</p>
+                <h2 class="workflow-detail-title" id="workflow-detail-title">${stage.title}</h2>
+                <p class="workflow-detail-description">${stage.description}</p>
+                <div class="workflow-detail-divider"></div>
+                <h3 class="workflow-detail-subtitle">Key Activities</h3>
+                <ul class="workflow-detail-activities">${stage.activities.map((activity) => `<li><span class="material-symbols-outlined">check_circle</span>${activity}</li>`).join('')}</ul>
+            `;
+        };
+
+        const makeWorkflowProxy = (stage, rect) => {
+            const proxy = document.createElement('div');
+            proxy.className = 'workflow-detail-proxy';
+            proxy.style.setProperty('--detail-color', stage.color);
+            Object.assign(proxy.style, {
+                left: `${rect.left}px`,
+                top: `${rect.top}px`,
+                width: `${rect.width}px`,
+                height: `${rect.height}px`,
+                borderRadius: '50%'
+            });
+            proxy.innerHTML = `<span class="material-symbols-outlined">${stage.icon}</span>`;
+            document.body.appendChild(proxy);
+            return proxy;
+        };
+
+        const animateWorkflowProxy = (proxy, fromRect, toRect, opening) => proxy.animate([
+            {
+                left: `${fromRect.left}px`,
+                top: `${fromRect.top}px`,
+                width: `${fromRect.width}px`,
+                height: `${fromRect.height}px`,
+                borderRadius: opening ? '50%' : '14px'
+            },
+            {
+                left: `${toRect.left}px`,
+                top: `${toRect.top}px`,
+                width: `${toRect.width}px`,
+                height: `${toRect.height}px`,
+                borderRadius: opening ? '14px' : '50%'
+            }
+        ], {
+            duration: 760,
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            fill: 'forwards'
+        });
+
+        const resetWorkflowDetail = () => {
+            if (activeWorkflowDot) {
+                activeWorkflowDot.classList.remove('is-lifted');
+                activeWorkflowDot.closest('.delivery-flow-step').classList.remove('is-active');
+            }
+            deliveryFlow.classList.remove('has-active');
+            workflowDetailCard.classList.remove('is-visible');
+            workflowDetailLayer.classList.remove('is-open');
+            workflowDetailLayer.setAttribute('aria-hidden', 'true');
+            activeWorkflowIndex = null;
+            activeWorkflowDot = null;
+            workflowTransition = false;
+        };
+
+        const openWorkflowDetail = (index, dot) => {
+            if (activeWorkflowIndex !== null) {
+                if (index !== activeWorkflowIndex) {
+                    switchWorkflowDetail(index, dot);
+                }
+                return;
+            }
+
+            const stage = workflowStages[index];
+            activeWorkflowIndex = index;
+            activeWorkflowDot = dot;
+            workflowTransition = true;
+            renderWorkflowDetail(stage);
+            deliveryFlow.classList.add('has-active');
+            dot.closest('.delivery-flow-step').classList.add('is-active');
+            dot.classList.add('is-lifted');
+            workflowDetailLayer.classList.add('is-open');
+            workflowDetailLayer.setAttribute('aria-hidden', 'false');
+
+            if (prefersReducedMotion) {
+                workflowDetailCard.classList.add('is-visible');
+                workflowDetailCard.focus({ preventScroll: true });
+                workflowTransition = false;
+                return;
+            }
+
+            workflowDetailCard.classList.add('is-measuring');
+            window.setTimeout(() => {
+                const sourceRect = dot.getBoundingClientRect();
+                const targetRect = workflowDetailCard.getBoundingClientRect();
+                workflowDetailCard.classList.remove('is-measuring');
+                const proxy = makeWorkflowProxy(stage, sourceRect);
+                const animation = animateWorkflowProxy(proxy, sourceRect, targetRect, true);
+
+                animation.finished.then(() => {
+                    proxy.remove();
+                    workflowDetailCard.classList.add('is-visible');
+                    workflowDetailCard.focus({ preventScroll: true });
+                    workflowTransition = false;
+                });
+            }, 0);
+        };
+
+        const switchWorkflowDetail = (index, dot) => {
+            const previousDot = activeWorkflowDot;
+            previousDot.classList.remove('is-lifted');
+            previousDot.closest('.delivery-flow-step').classList.remove('is-active');
+            activeWorkflowIndex = index;
+            activeWorkflowDot = dot;
+            dot.closest('.delivery-flow-step').classList.add('is-active');
+            dot.classList.add('is-lifted');
+            workflowDetailContent.style.opacity = '0';
+            workflowDetailContent.style.transform = 'translateY(8px)';
+
+            window.setTimeout(() => {
+                if (activeWorkflowDot !== dot) {
+                    return;
+                }
+                renderWorkflowDetail(workflowStages[index]);
+                window.setTimeout(() => {
+                    workflowDetailContent.style.opacity = '1';
+                    workflowDetailContent.style.transform = 'translateY(0)';
+                }, 0);
+            }, 160);
+        };
+
+        const closeWorkflowDetail = () => {
+            if (activeWorkflowIndex === null || workflowTransition) {
+                return;
+            }
+
+            workflowTransition = true;
+            const stage = workflowStages[activeWorkflowIndex];
+            const targetDot = activeWorkflowDot;
+
+            if (prefersReducedMotion) {
+                resetWorkflowDetail();
+                return;
+            }
+
+            const sourceRect = workflowDetailCard.getBoundingClientRect();
+            const targetRect = targetDot.getBoundingClientRect();
+            workflowDetailCard.classList.remove('is-visible');
+            const proxy = makeWorkflowProxy(stage, sourceRect);
+            proxy.style.borderRadius = '14px';
+            const animation = animateWorkflowProxy(proxy, sourceRect, targetRect, false);
+
+            animation.finished.then(() => {
+                proxy.remove();
+                resetWorkflowDetail();
+            });
+        };
+
+        workflowDots.forEach((dot, index) => {
+            dot.setAttribute('role', 'button');
+            dot.setAttribute('tabindex', '0');
+            dot.setAttribute('aria-label', `Open ${workflowStages[index].title} details`);
+            dot.addEventListener('click', () => openWorkflowDetail(index, dot));
+            dot.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openWorkflowDetail(index, dot);
+                }
+            });
+        });
+
+        workflowDetailClose.addEventListener('click', closeWorkflowDetail);
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeWorkflowDetail();
+            }
+        });
+        document.addEventListener('pointerdown', (event) => {
+            if (activeWorkflowIndex !== null && !workflowDetailCard.contains(event.target) && !event.target.closest('.delivery-flow-dot')) {
+                closeWorkflowDetail();
+            }
+        });
+
+        const productsDropdown = document.getElementById('products-dropdown');
+        const productsTrigger = document.getElementById('products-trigger');
+        const productsTriggerIcon = document.getElementById('products-trigger-icon');
+        const productsMenu = document.getElementById('products-menu');
+        let productsCloseTimer;
+
+        const setProductsMenuOpen = (isOpen) => {
+            productsMenu.classList.toggle('invisible', !isOpen);
+            productsMenu.classList.toggle('pointer-events-none', !isOpen);
+            productsMenu.classList.toggle('opacity-0', !isOpen);
+            productsMenu.classList.toggle('translate-y-2', !isOpen);
+            productsTriggerIcon.classList.toggle('rotate-180', isOpen);
+            productsTrigger.setAttribute('aria-expanded', String(isOpen));
+        };
+
+        const openProductsMenu = () => {
+            window.clearTimeout(productsCloseTimer);
+            setProductsMenuOpen(true);
+        };
+
+        const closeProductsMenu = () => {
+            window.clearTimeout(productsCloseTimer);
+            productsCloseTimer = window.setTimeout(() => setProductsMenuOpen(false), 250);
+        };
+
+        productsDropdown.addEventListener('mouseenter', openProductsMenu);
+        productsDropdown.addEventListener('mouseleave', closeProductsMenu);
+        productsMenu.addEventListener('mouseenter', openProductsMenu);
+        productsMenu.addEventListener('mouseleave', closeProductsMenu);
+        productsDropdown.addEventListener('focusin', openProductsMenu);
+        productsDropdown.addEventListener('focusout', () => {
+            window.setTimeout(() => {
+                if (!productsDropdown.contains(document.activeElement)) {
+                    closeProductsMenu();
+                }
+            });
+        });
+        productsTrigger.addEventListener('click', () => {
+            const isOpen = productsTrigger.getAttribute('aria-expanded') === 'true';
+            window.clearTimeout(productsCloseTimer);
+            setProductsMenuOpen(!isOpen);
+        });
+    </script>
+</body></html>

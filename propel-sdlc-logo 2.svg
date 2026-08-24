@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="62" viewBox="0 0 220 62">
+  <text x="0" y="30" font-family="Inter, &#39;Segoe UI&#39;, system-ui, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.3" fill="#0d1117">Propel</text>
+  <text x="90" y="30" font-family="Inter, &#39;Segoe UI&#39;, system-ui, sans-serif" font-weight="500" font-size="26" fill="#5a6270"> SDLC</text>
+  <g>
+    <rect x="0" y="46" width="68" height="5" rx="2.5" fill="#0072b4"></rect>
+    <rect x="72" y="46" width="68" height="5" rx="2.5" fill="#73c7eb"></rect>
+    <rect x="144" y="46" width="68" height="5" rx="2.5" fill="#c5dd6f"></rect>
+  </g>
+</svg>
